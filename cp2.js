@@ -28,8 +28,28 @@ const fetchProductsAsync = async function () {
 
 
 function displayProducts(products) {
+    const container = document.getElementById("products-container");
+    container.innerHTML = ""; // Clear previous content
     products.slice(0,5).forEach(product => {
-        console.log(`${product.fields.name}, ${(product.fields.price / 100).toFixed(2)}`);
+        // console.log(`${product.fields.name}, ${(product.fields.price / 100).toFixed(2)}`);
+    const card = document.createElement("div");
+    card.classList.add = "product-card";
+    // image
+    const img = document.createElement("img");
+    img.src = product.fields.image[0].url;
+    img.alt = product.fields.name;
+    // name
+    const name = document.createElement("name");
+    name.textContent = product.fields.name;
+    // price
+    const price = document.createElement("price");
+    price.textContent = `$${(product.fields.price / 100).toFixed(2)}`;
+;    // append to card
+    card.appendChild(img);
+    card.appendChild(name);
+    card.appendChild(price);
+    // append card to container
+    container.appendChild(card);
     })
 };
 let handleError = (error) => {
